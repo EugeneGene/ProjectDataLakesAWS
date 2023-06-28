@@ -1,0 +1,48 @@
+customer_landing.sql
+accelerometer_landing.sql
+customer_landing_to_trusted.py
+accelerometer_landing_to_trusted_zone.py
+customer_trusted_to_curated.py
+trainer_trusted_to_curated.py
+machine_learning_curated.py
+
+
+1655296678763 -> GMT: Wednesday, June 15, 2022 12:37:58.763 PM
+1655471583651 -> GMT: Friday, June 17, 2022 1:13:03.651 PM
+1655562044886 -> GMT: Saturday, June 18, 2022 2:20:44.886 PM <-
+1655562460721 -> GMT: Saturday, June 18, 2022 2:27:40.721 PM <-
+1655562669699 -> GMT: Saturday, June 18, 2022 2:31:09.699 PM <-
+1655563258079 -> GMT: Saturday, June 18, 2022 2:40:58.079 PM <-
+1655563990886 -> GMT: Saturday, June 18, 2022 2:53:10.886 PM
+1655564157236 -> GMT: Saturday, June 18, 2022 2:55:57.236 PM
+1655564446759 -> GMT: Saturday, June 18, 2022 3:00:46.759 PM
+
+
+The rest of the project is quite straightforward. You may simply follow the instructions in
+the Ingesting and Organizing Data in a Lakehouse lessons.
+1 Some steps are intentionally left out. For example, before joining customer with
+accelerometer tables, you'd need to create the customer_trusted table from Athena.
+1 The accelerometer data is huge. Fortunately, the rubric does not require reviewers to
+theck the completeness of the data, so you could remove some raw accelerometer data
+before uploading them to S3.
+After you have created the customer _curated table, use it to create the
+step_trainer_trusted table. And, finally, join the step_trainer_trusted table with the
+accelerometer_trusted table to create the machine_learning_ curated table.
+
+Some reviewers are very particular about file names, so use only the following file names:
+customer_landing.sql
+accelerometer_landing.sql
+customer_landing_to_trusted.py
+accelerometer_landing_to_trusted_zone.py
+customer_trusted_to_curated.py
+trainer_trusted_to_curated.py
+machine_learning_curated.py
+
+Upload the data to these directories:
+s3://your-bucket/customer/landing
+s3://your-bucket/accelerometer/landing
+s3://your-bucket/step_trainer/landing
+There are two ways to do this:
+Create the folders locally and then upload them to the S3 bucket. S3 does not have a Zip file extraction feature.
+Alternatively, you could use AWS CloudShell to clone the git into your AWS region's persistent storage (1GB) then aws cp the datafiles to your S3 bucket. Learn more here:
+Using Spark in AWS > Exercise: Define a Trusted Zone Path
